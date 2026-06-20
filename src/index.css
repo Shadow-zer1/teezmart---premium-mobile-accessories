@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Lexend", sans-serif;
+  --font-label: "Public Sans", sans-serif;
+
+  --color-primary: #0059bb;
+  --color-tertiary: #0070ea;
+  --color-surface: #f7f9fb;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #191c1e;
+  --color-outline-variant: rgba(193, 198, 215, 0.15);
+
+  --shadow-ambient: 0 12px 32px rgba(0, 89, 187, 0.06);
+  
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 40px;
+  --radius-3xl: 60px;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface antialiased font-sans selection:bg-primary/10 selection:text-primary;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-[-0.03em];
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1.1); }
+    50% { opacity: 0.2; transform: scale(1.05); }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-linear-to-r from-primary to-tertiary text-white px-8 py-4 rounded-2xl font-display font-extrabold transition-all duration-500 active:scale-95 shadow-ambient hover:shadow-primary/20 hover:-translate-y-1;er:-translate-y-1;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary px-8 py-4 rounded-2xl font-display font-extrabold hover:bg-surface-container-low transition-all duration-500 active:scale-95 shadow-sm hover:shadow-ambient hover:-translate-y-1;
+  }
+
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-[32px] sticky top-0 z-50 border-b border-outline-variant/10;
+  }
+
+  .card-atrium {
+    @apply bg-surface-container-lowest rounded-2xl shadow-ambient transition-all duration-700 ease-[0.22,1,0.36,1] hover:shadow-primary/10 hover:-translate-y-2;
+  }
+
+  .input-atrium {
+    @apply w-full px-6 py-5 bg-surface-container-low border-none rounded-2xl outline-none focus:ring-2 focus:ring-primary/10 transition-all font-bold text-lg placeholder:text-on-surface/20;
+  }
+}
+
+/* Annoucment Bar */
+
+/* Styling for the content inside the bar */
+.announcement-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* <a> tags in WP will look like this: */
+.announcement-content a {
+  @apply bg-white/20 hover:bg-white/40 px-3 py-1 rounded-full text-[10px] 
+         transition-all border border-white/10 no-underline text-white;
+}
+
+/* Removes default WP paragraph margins */
+.announcement-content p {
+  margin: 0;
+  display: inline;
+}
